@@ -6,6 +6,9 @@ html {
 	--color--hover:#F8F8F8     //친구목록 마우스 호버
 	--color--focus:#F2F2F2 	   //친구목록 포커스 
 
+	--color-yellow: #ECECED;
+	--color-gray: #ececed;
+
 }
 `;
 
