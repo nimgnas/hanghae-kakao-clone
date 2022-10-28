@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+import Body from "./components/Layout/Body";
+import Header from "./components/Layout/Header";
+import Layout from "./components/Layout/Layout";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Header title="친구">헤더칠드런</Header>
+      <Body>바디칠드런</Body>
+    </Layout>
   );
 }
 
 export default App;
+
+const Stdiv = styled.div`
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+`;
