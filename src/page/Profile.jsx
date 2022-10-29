@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import ProfileBottom from "../components/Profile/ProfileBottom";
 
@@ -5,15 +6,22 @@ import ProfileHeader from "../components/Profile/ProfileHeader";
 import ProfileMiddle from "../components/Profile/ProfileMiddle";
 
 function Profile() {
+  const [profileEdit, setProfileEdit] = useState(true);
   return (
     <>
       <StContainer>
         <StProfileTop>
           <ProfileHeader />
-          <ProfileMiddle />
+          <ProfileMiddle
+            setProfileEdit={setProfileEdit}
+            profileEdit={profileEdit}
+          />
         </StProfileTop>
         <StProfileBottom>
-          <ProfileBottom />
+          <ProfileBottom
+            setProfileEdit={setProfileEdit}
+            profileEdit={profileEdit}
+          />
         </StProfileBottom>
       </StContainer>
     </>

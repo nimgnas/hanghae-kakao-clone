@@ -5,10 +5,11 @@ import { IoCallSharp } from "react-icons/io5";
 import { IoMdVideocam } from "react-icons/io";
 import { useState } from "react";
 
-function ProfileBottom() {
+function ProfileBottom({ profileEdit, setProfileEdit }) {
   //서버 연결시 toggle대신 내 프로필인지 친구 프로필인지 구분하는 토글 필요
   //서버 연결시 className="chat"에 있는 onclick함수 바꾸기
   const [toggle, setToggle] = useState(true);
+
   return (
     <>
       {toggle ? (
@@ -22,7 +23,7 @@ function ProfileBottom() {
 
             <div className="text">나와의 채팅</div>
           </div>
-          <div className="edit">
+          <div className="edit" onClick={() => setProfileEdit(!profileEdit)}>
             <MdEdit size={18} color="white" />
             <div className="text">프로필 관리</div>
           </div>

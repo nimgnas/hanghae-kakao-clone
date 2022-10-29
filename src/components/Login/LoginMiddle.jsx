@@ -77,6 +77,7 @@ const StMidContain = styled.div`
     font-size: 13px;
     color: white;
     border-radius: 3px;
+    cursor: pointer;
   }
   .or-contain {
     width: 240px;
@@ -109,6 +110,9 @@ const StMidContain = styled.div`
     font-size: 13px;
 
     border-radius: 3px;
+  }
+  .register:hover {
+    cursor: pointer;
   }
   .autologin {
     height: 50px;
