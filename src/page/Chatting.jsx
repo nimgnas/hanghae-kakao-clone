@@ -16,7 +16,12 @@ function Chatting() {
         </FriendCompoent>
       </Header>
       <Body></Body>
-      <ChattingBox></ChattingBox>
+      <ChattingBox>
+        <ButtonWrapper>
+          <Input />
+          <Button>전송</Button>
+        </ButtonWrapper>
+      </ChattingBox>
     </Layout>
   );
 }
@@ -61,6 +66,35 @@ const Body = styled.div`
 `;
 
 const ChattingBox = styled.div`
-  height: 100px;
+  height: 135px;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+`;
+
+const Input = styled.textarea`
+  display: block;
+  height: 70px;
+  width: 100%;
+  border: none;
+  resize: none;
+  font-weight: 500;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  height: 100%;
+  background-color: white;
+`;
+
+const Button = styled.button`
+  background-color: var(--color-yellow);
+
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
 `;
