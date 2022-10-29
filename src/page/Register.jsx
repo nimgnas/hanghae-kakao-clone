@@ -4,14 +4,21 @@ import RegisterMiddle from "../components/Register/RegisterMiddle";
 
 function Register() {
   return (
-    <StContainer>
-      <LoginTop />
-      <RegisterMiddle />
-    </StContainer>
+    <StWrap>
+      <StContainer>
+        <LoginTop />
+        <RegisterMiddle />
+      </StContainer>
+    </StWrap>
   );
 }
 
 export default Register;
+
+const StWrap = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const StContainer = styled.div`
   height: 590px;
