@@ -1,5 +1,6 @@
 import { AiOutlineSearch } from "react-icons/ai";
 import styled from "styled-components";
+import FriendComponent from "../components/FriendComponent/FriendComponent";
 import Body from "../components/Layout/Body";
 import Header from "../components/Layout/Header";
 import Layout from "../components/Layout/Layout";
@@ -12,11 +13,11 @@ function ChattingTab() {
         <AiOutlineSearch />
       </Header>
       <Body>
-        <FriendBox>
-          <ImgWrapper></ImgWrapper>
-          <FBody></FBody>
-          <FFooter></FFooter>
-        </FriendBox>
+        {new Array(20).fill(1).map(() => (
+          <FriendComponent>
+            <TimeText>어제</TimeText>
+          </FriendComponent>
+        ))}
       </Body>
     </Layout>
   );
@@ -24,22 +25,11 @@ function ChattingTab() {
 
 export default ChattingTab;
 
-const FriendBox = styled.div`
-  background-color: gray;
-  height: 75px;
-  padding: 15px;
-  display: flex;
-`;
-const ImgWrapper = styled.img`
+const TimeText = styled.span`
   width: 50px;
-  height: 100%;
-`;
-const FBody = styled.div`
-  /* background-color: tomato; */
-  height: 75px;
-  width: 100px;
-`;
-const FFooter = styled.div`
-  background-color: teal;
-  height: 75px;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 12px;
+  float: right;
+  color: gray;
 `;

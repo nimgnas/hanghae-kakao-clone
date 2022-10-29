@@ -13,10 +13,12 @@ export default Header;
 
 const HeaderContainer = styled.div`
   height: 55px;
-  width: 100%;
   padding: 15px 20px;
   display: flex;
   justify-content: space-between;
+  position: sticky;
+  background-color: white;
+  top: 0;
 `;
 
 const IconWrapper = styled.div`
