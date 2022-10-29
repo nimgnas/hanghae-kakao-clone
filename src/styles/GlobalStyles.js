@@ -2,12 +2,17 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
 html {
-	--color--navbar: #ECECED   //네브바
-	--color--hover:#F8F8F8     //친구목록 마우스 호버
-	--color--focus:#F2F2F2 	   //친구목록 포커스 
+	--color-navbar: #ECECED;   //네브바
+	--color-hover:#F8F8F8;     //친구목록 마우스 호버
+	--color-focus:#F2F2F2; 	   //친구목록 포커스 
+	--color-profilebackground:#848B91; //프로필 백그라운드
+	--color-kakaoyellow:#FEE500;  //카카오 노란배경
+	--color-kakaologo:#423630; //카카오 로고 갈색
+
 
 	--color-yellow: #ECECED;
 	--color-gray: #ececed;
+	
 
 }
 `;
