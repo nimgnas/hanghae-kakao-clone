@@ -1,19 +1,17 @@
 import styled from "styled-components";
-import LoginBottom from "../components/Login/LoginBottom";
-import LoginMiddle from "../components/Login/LoginMiddle";
 import LoginTop from "../components/Login/LoginTop";
+import RegisterMiddle from "../components/Register/RegisterMiddle";
 
-function Login() {
+function Register() {
   return (
     <StContainer>
       <LoginTop />
-      <LoginMiddle />
-      <LoginBottom />
+      <RegisterMiddle />
     </StContainer>
   );
 }
 
-export default Login;
+export default Register;
 
 const StContainer = styled.div`
   height: 590px;
@@ -22,5 +20,4 @@ const StContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
 `;
