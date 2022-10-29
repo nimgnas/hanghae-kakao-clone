@@ -11,7 +11,10 @@ function Profile() {
     <>
       <StContainer>
         <StProfileTop>
-          <ProfileHeader />
+          <ProfileHeader
+            profileEdit={profileEdit}
+            setProfileEdit={setProfileEdit}
+          />
           <ProfileMiddle
             setProfileEdit={setProfileEdit}
             profileEdit={profileEdit}
@@ -42,18 +45,6 @@ const StProfileTop = styled.div`
 
   flex-wrap: wrap;
   align-content: space-between;
-  .top {
-    height: 40px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    .fav {
-      margin: 5px;
-    }
-    .close {
-      margin: 5px;
-    }
-  }
 `;
 const StProfileBottom = styled.div`
   height: 105px;
