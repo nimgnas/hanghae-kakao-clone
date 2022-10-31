@@ -101,7 +101,7 @@ const rejectedReducer = (state, action) => {
   state.isLoading = false;
 };
 
-export const authSlice = createSlice({
+export const userSlice = createSlice({
   name: "user",
   initialState: {
     userInfo: {
