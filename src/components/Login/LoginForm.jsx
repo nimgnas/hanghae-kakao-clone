@@ -2,25 +2,82 @@ import { useState } from "react";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import styled from "styled-components";
-function LoginMiddle() {
-  const [loginToggle, setLoginToggle] = useState(true);
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { __signin } from "../../Redux/module/user";
+import { useEffect } from "react";
+function LoginForm() {
+  const [loginToggle, setLoginToggle] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  //초기값
+  const initialState = {
+    email: "",
+    password: "",
+  };
+  const [user, setUser] = useState(initialState);
+
+  //로그인에 필요한 인풋값 유저스테이트에 저장
+  const onChangeLoginHandler = (e) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+  };
+
+  useEffect(() => {
+    if (user.username && user.password) {
+      setLoginToggle(true);
+    } else {
+      setLoginToggle(false);
+    }
+  }, [user]);
+
+  //로그인요청 (혹시 사용자가 공백만 입력 시 다음과 같은 알럿 표시)
+  const onClickHandler = () => {
+    if (user.username.trim() === "") {
+      alert("아이디를 입력하세요!");
+    }
+    if (user.password.trim() === "") {
+      alert("비밀번호를 입력하세요!");
+    } else {
+      dispatch(__signin(user));
+    }
+  };
+
   return (
     <StMidContain>
       <RiKakaoTalkFill size={110} color={"var(--color-kakaologo)"} />
-      <input className="id" placeholder="아이디" />
-      <input className="pw" placeholder="비밀번호" />
-      <div
-        onClick={() => setLoginToggle(!loginToggle)}
-        className={loginToggle ? "login-btn-isnot" : "login-btn-isok"}
-      >
-        로그인
-      </div>
+      <input
+        className="id"
+        type="text"
+        name="username"
+        placeholder="아이디"
+        required
+        onChange={onChangeLoginHandler}
+      />
+      <input
+        className="pw"
+        type="password"
+        name="password"
+        placeholder="비밀번호"
+        required
+        onChange={onChangeLoginHandler}
+      />
+      {loginToggle ? (
+        <div onClick={onClickHandler} className="login-btn-isok">
+          로그인
+        </div>
+      ) : (
+        <div className="login-btn-isnot">로그인</div>
+      )}
+
       <div className="or-contain">
         <div className="line" />
         <p>또는</p>
         <div className="line" />
       </div>
-      <div className="register">회원가입</div>
+      <div className="register" onClick={() => navigate("/register")}>
+        회원가입
+      </div>
 
       <div className="autologin">
         <input type="checkbox" />
@@ -30,7 +87,7 @@ function LoginMiddle() {
     </StMidContain>
   );
 }
-export default LoginMiddle;
+export default LoginForm;
 
 const StMidContain = styled.div`
   display: flex;
