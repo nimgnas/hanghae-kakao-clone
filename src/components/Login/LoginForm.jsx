@@ -3,9 +3,12 @@ import { RiKakaoTalkFill } from "react-icons/ri";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { __signin } from "../../Redux/module/user";
 function LoginForm() {
   const [loginToggle, setLoginToggle] = useState(true);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   //초기값
   const initialState = {
     email: "",
@@ -22,9 +25,10 @@ function LoginForm() {
 
   //로그인요청 (dispatch 만들 때 아이디 비밀번호오류나면 로그인 안되게 만들어야함)
   const onClickHandler = () => {
-    if (user.email.trim() === "" || user.password.trim() === "") {
+    if (user.username.trim() === "" || user.password.trim() === "") {
       alert("입력하세요!");
     }
+    dispatch(__signin(user));
   };
 
   return (
@@ -32,8 +36,8 @@ function LoginForm() {
       <RiKakaoTalkFill size={110} color={"var(--color-kakaologo)"} />
       <input
         className="id"
-        type="email"
-        name="email"
+        type="text"
+        name="username"
         placeholder="아이디"
         required
         onChange={onChangeLoginHandler}

@@ -1,35 +1,54 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import defaultPic from "../../img/kakaodefault.jpg";
+import { __signup } from "../../Redux/module/user";
 
 function RegisterForm() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  //파일 인풋창 숨기고 버튼에 참조시키기 위해 선언
+  let inputRef;
+
   //초기값
   const initialState = {
-    email: "",
+    username: "",
     password: "",
     passwordCheck: "",
     nickname: "",
   };
 
+  //image 스테이트
+  const [image, setImage] = useState({
+    image: "",
+    previewUrl: "",
+  });
+
+  //image 온체인지
+  const saveImage = (e) => {
+    e.preventDefault();
+    const previewUrl = URL.createObjectURL(e.target.files[0]);
+    setImage({ image: e.target.files[0], previewUrl: previewUrl });
+  };
+
   //유저 스테이트 생성
   const [user, setUser] = useState(initialState);
-  const { email, password, nickname, passwordCheck } = user;
+  const { username, password, nickname, passwordCheck, status } = user;
 
   //상태관리 위해 초기값 세팅
-  const [emailInput, setEmailInput] = useState("");
+  const [usernameInput, setUsernameInput] = useState("");
   const [passInput, setPassInput] = useState("");
   const [passCheckInput, setPassCheckInput] = useState("");
   const [nicknameInput, setNicknameInput] = useState("");
+  const [statusInput, setStatusInput] = useState("");
 
   //유효성검사 통과 스테이트
   const [registerOk, setRegisterOk] = useState(false);
 
   //정규식
-  const regEmail =
-    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
+  const regUsername = /^[a-z0-9]{4,12}$/;
   const regPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,16}$/;
   const regNickname = /^[ㄱ-ㅎ|가-힣]{2,6}$/;
 
@@ -38,10 +57,10 @@ function RegisterForm() {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
 
-    if (name === "email") {
-      !regEmail.test(value)
-        ? setEmailInput("이메일 형식으로 입력해 주세요!")
-        : setEmailInput("good");
+    if (name === "username") {
+      !regUsername.test(value)
+        ? setUsernameInput("4~12자의 영문 소문자와 숫자로 입력해주세요.")
+        : setUsernameInput("good");
     }
     if (name === "password") {
       !regPassword.test(value)
@@ -59,15 +78,22 @@ function RegisterForm() {
         ? setPassCheckInput("비밀번호가 불일치 합니다.")
         : setPassCheckInput("good");
     }
+    if (name === "status") {
+      !status
+        ? setStatusInput("상태메시지를 입력하세요")
+        : setStatusInput("good");
+    }
+    console.log(user);
   };
 
   //useState의 비동기문제로 한박자 느리게 반응하는 것을 바로 반응하도록 useEffect사용
   useEffect(() => {
     if (
-      regEmail.test(email) &&
+      regUsername.test(username) &&
       regPassword.test(password) &&
       regNickname.test(nickname) &&
-      password === passwordCheck
+      password === passwordCheck &&
+      status
     ) {
       return setRegisterOk(true);
     } else {
@@ -75,35 +101,67 @@ function RegisterForm() {
     }
   }, [user]);
 
-  //인풋값 재확인
+  //인풋값 재확인 및 포스트 요청
   const onSubmitUserHandler = (e) => {
     e.preventDefault();
-    if (
-      !regEmail.test(email) ||
-      !regPassword.test(password) ||
-      !regNickname.test(nickname) ||
-      password !== passwordCheck
-    ) {
-      return alert("아이디 비밀번호를 다시 확인해주세요");
+
+    //입력이 틀리면 전송되지 않도록 설정
+    if (!regUsername.test(username)) {
+      return alert("아이디를 확인하세요!");
+    }
+    if (!regPassword.test(password)) {
+      return alert(
+        "비밀번호를 재설정 하세요!\n8~16자의 영문 대소문자, 숫자, 특수문자"
+      );
+    }
+    if (password !== passwordCheck) {
+      return alert("비밀번호가 다릅니다! 재입력 해주세요!");
+    }
+    if (!regNickname.test(nickname)) {
+      return alert("닉네임을 다시 설정 하세요!");
+    }
+
+    if (status.length === 0) {
+      return alert("상태메시지를 입력해주세요!");
     } else {
+      const formdata = new FormData();
+      formdata.append(
+        "dto",
+        new Blob([JSON.stringify(user)], { type: "application/json" })
+      );
+      formdata.append("file", image.image);
+      dispatch(__signup(formdata));
       alert("그렇지그렇지그렇지");
     }
   };
 
   return (
     <StContainer>
-      <div className="pic">
-        <img src={defaultPic} />
+      <div className="pic" onClick={() => inputRef.click()}>
+        {!image.image ? (
+          <img src={defaultPic} alt="default" />
+        ) : (
+          <img src={image?.previewUrl} alt="upload" />
+        )}
       </div>
       <input
+        className="img-input"
+        type="file"
+        accept="image/*"
+        name="image_file"
+        onChange={saveImage}
+        //인풋을 안보이게하고 버튼에 레퍼런스 입력함
+        ref={(refParam) => (inputRef = refParam)}
+      />
+      <input
         className="id"
-        type="email"
-        name="email"
-        value={email}
+        type="text"
+        name="username"
+        value={username}
         onChange={onChangeUserHandler}
         placeholder="아이디를 입력 하세요"
       />
-      <span>{emailInput}</span>
+      <span>{usernameInput}</span>
       <input
         className="qw"
         type="password"
@@ -131,6 +189,16 @@ function RegisterForm() {
         placeholder="닉네임을 입력 하세요"
       />
       <span>{nicknameInput}</span>
+      <input
+        className="status"
+        type="text"
+        name="status"
+        value={status}
+        onChange={onChangeUserHandler}
+        maxLength="20"
+        placeholder="상태메시지를 설정 하세요(20글자이내)"
+      />
+      <span>{statusInput}</span>
       <div
         className={registerOk ? "login-btn-isok" : "login-btn-isnot"}
         onClick={onSubmitUserHandler}
@@ -161,6 +229,9 @@ const StContainer = styled.div`
     overflow: hidden;
     position: relative;
     margin: 15px;
+  }
+  .img-input {
+    display: none;
   }
   img {
     /* position: absolute; */
