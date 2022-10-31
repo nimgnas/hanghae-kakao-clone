@@ -11,7 +11,7 @@ const api = axios.create({
 api.interceptors.request.use(
   function (config) {
     if (config.url !== "/login" || config.url !== "/signup") {
-      config.headers.authorization = localStorage.getItem("authorization");
+      config.headers.Access_Token = localStorage.getItem("Access_Token");
     }
     return config;
   },
@@ -23,8 +23,9 @@ api.interceptors.request.use(
 // api요청 주소가 login일 경우 access token과 refresh token을 받아 로컬스토리지에 저장해준다.
 api.interceptors.response.use(
   function (response) {
-    if (response.config.url === "/login" && response.data.success) {
-      localStorage.setItem("authorization", response.headers.authorization);
+    console.log(response);
+    if (response.config.url === "signin" && response.data.success) {
+      localStorage.setItem("access_token", response.headers.access_token);
       localStorage.setItem("refresh_token", response.headers.refresh_token);
     }
     return response;
