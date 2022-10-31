@@ -81,8 +81,7 @@ export const friendSlice = createSlice({
     // 친구 추가
     [__addFriend.pending]: pendingReducer,
     [__addFriend.fulfilled]: (state, action) => {
-      // TODO: 친구추가시 바로 반영 어떻게할까? 백엔드에서 유저정보도 같이 전송부탁 or 프론트 어딘가에서 가져온다
-      state.successMsg = action.payload;
+      state.friendList.push(action.payload);
       state.isLoading = false;
     },
     [__addFriend.rejected]: rejectedReducer,
