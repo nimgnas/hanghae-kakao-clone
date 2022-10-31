@@ -1,19 +1,25 @@
 import styled from "styled-components";
 import LoginBottom from "../components/Login/LoginBottom";
-import LoginMiddle from "../components/Login/LoginMiddle";
+import LoginForm from "../components/Login/LoginForm";
 import LoginTop from "../components/Login/LoginTop";
 
 function Login() {
   return (
-    <StContainer>
-      <LoginTop />
-      <LoginMiddle />
-      <LoginBottom />
-    </StContainer>
+    <StWrap>
+      <StContainer>
+        <LoginTop />
+        <LoginForm />
+        <LoginBottom />
+      </StContainer>
+    </StWrap>
   );
 }
 
 export default Login;
+const StWrap = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const StContainer = styled.div`
   height: 590px;

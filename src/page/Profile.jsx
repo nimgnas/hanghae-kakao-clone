@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ProfileBottom from "../components/Profile/ProfileBottom";
 
 import ProfileHeader from "../components/Profile/ProfileHeader";
-import ProfileMiddle from "../components/Profile/ProfileMiddle";
+import ProfileForm from "../components/Profile/ProfileForm";
 
 function Profile() {
   const [profileEdit, setProfileEdit] = useState(true);
@@ -11,8 +11,11 @@ function Profile() {
     <>
       <StContainer>
         <StProfileTop>
-          <ProfileHeader />
-          <ProfileMiddle
+          <ProfileHeader
+            profileEdit={profileEdit}
+            setProfileEdit={setProfileEdit}
+          />
+          <ProfileForm
             setProfileEdit={setProfileEdit}
             profileEdit={profileEdit}
           />
@@ -42,18 +45,6 @@ const StProfileTop = styled.div`
 
   flex-wrap: wrap;
   align-content: space-between;
-  .top {
-    height: 40px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    .fav {
-      margin: 5px;
-    }
-    .close {
-      margin: 5px;
-    }
-  }
 `;
 const StProfileBottom = styled.div`
   height: 105px;
