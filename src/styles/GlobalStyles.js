@@ -8,12 +8,7 @@ html {
 	--color-profilebackground:#848B91; //프로필 백그라운드
 	--color-kakaoyellow:#FEE500;  //카카오 노란배경
 	--color-kakaologo:#423630; //카카오 로고 갈색
-
-
-	--color-yellow: #ECECED;
-	--color-gray: #ececed;
-	
-
+	--color-chatBackground:#b2c6d9 // 채팅방 백그라운드
 }
 `;
 

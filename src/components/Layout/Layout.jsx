@@ -36,7 +36,7 @@ const LayoutContainer = styled.div`
 `;
 
 const Nav = styled.div`
-  background-color: var(--color-gray);
+  background-color: var(--color-navbar);
   height: 100%;
   width: 85px;
   display: flex;
