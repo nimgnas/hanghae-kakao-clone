@@ -83,7 +83,6 @@ function RegisterForm() {
         ? setStatusInput("상태메시지를 입력하세요")
         : setStatusInput("good");
     }
-    console.log(user);
   };
 
   //useState의 비동기문제로 한박자 느리게 반응하는 것을 바로 반응하도록 useEffect사용
@@ -246,6 +245,7 @@ const StContainer = styled.div`
     border-color: #d6d6d6;
     margin: 5px;
     border-radius: 5px;
+    padding-left: 10px;
   }
   span {
     font-size: 12px;

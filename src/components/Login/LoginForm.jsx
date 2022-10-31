@@ -5,8 +5,9 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { __signin } from "../../Redux/module/user";
+import { useEffect } from "react";
 function LoginForm() {
-  const [loginToggle, setLoginToggle] = useState(true);
+  const [loginToggle, setLoginToggle] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   //초기값
@@ -20,15 +21,26 @@ function LoginForm() {
   const onChangeLoginHandler = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
-    console.log(user);
   };
 
-  //로그인요청 (dispatch 만들 때 아이디 비밀번호오류나면 로그인 안되게 만들어야함)
-  const onClickHandler = () => {
-    if (user.username.trim() === "" || user.password.trim() === "") {
-      alert("입력하세요!");
+  useEffect(() => {
+    if (user.username && user.password) {
+      setLoginToggle(true);
+    } else {
+      setLoginToggle(false);
     }
-    dispatch(__signin(user));
+  }, [user]);
+
+  //로그인요청 (혹시 사용자가 공백만 입력 시 다음과 같은 알럿 표시)
+  const onClickHandler = () => {
+    if (user.username.trim() === "") {
+      alert("아이디를 입력하세요!");
+    }
+    if (user.password.trim() === "") {
+      alert("비밀번호를 입력하세요!");
+    } else {
+      dispatch(__signin(user));
+    }
   };
 
   return (
@@ -50,12 +62,14 @@ function LoginForm() {
         required
         onChange={onChangeLoginHandler}
       />
-      <div
-        onClick={onClickHandler}
-        className={loginToggle ? "login-btn-isnot" : "login-btn-isok"}
-      >
-        로그인
-      </div>
+      {loginToggle ? (
+        <div onClick={onClickHandler} className="login-btn-isok">
+          로그인
+        </div>
+      ) : (
+        <div className="login-btn-isnot">로그인</div>
+      )}
+
       <div className="or-contain">
         <div className="line" />
         <p>또는</p>

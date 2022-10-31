@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "백엔드 서버 주소",
+  baseURL: "http://43.201.71.248",
 });
 
 // TODO: 로컬/세션 어느곳에 저장할지 정할것!
