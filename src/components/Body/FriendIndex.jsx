@@ -1,5 +1,7 @@
+import FriendComponent from "../FriendComponent/FriendComponent";
+
 function FriendIndex() {
-  return;
+  return <FriendComponent />;
 }
 
 export default FriendIndex;
