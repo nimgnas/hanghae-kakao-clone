@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { AiOutlineClose } from "react-icons/ai";
-function AddTop() {
+function AddTop({ addFriend, setAddFriend }) {
   return (
     <StContainer>
       <div className="cancle">
-        <div>
+        <div onClick={() => setAddFriend(!addFriend)}>
           <AiOutlineClose size={13} color={"#a8a7a7"} />
         </div>
       </div>

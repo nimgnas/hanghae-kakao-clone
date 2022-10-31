@@ -2,10 +2,10 @@ import styled from "styled-components";
 import AddFriendForm from "../components/AddFriend/AddFriendForm";
 import AddTop from "../components/AddFriend/AddTop";
 
-function AddFriend() {
+function AddFriend({ addFriend, setAddFriend }) {
   return (
     <StContainer>
-      <AddTop />
+      <AddTop addFriend={addFriend} setAddFriend={setAddFriend} />
       <AddFriendForm />
     </StContainer>
   );
