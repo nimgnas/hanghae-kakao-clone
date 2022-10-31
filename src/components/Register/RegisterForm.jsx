@@ -124,10 +124,11 @@ function RegisterForm() {
       return alert("상태메시지를 입력해주세요!");
     } else {
       const formdata = new FormData();
-      formdata.append(
-        "dto",
-        new Blob([JSON.stringify(user)], { type: "application/json" })
-      );
+      formdata.append("username", user.username);
+      formdata.append("nickname", user.nickname);
+      formdata.append("status", user.status);
+      formdata.append("password", user.password);
+      formdata.append("passwordCheck", user.passwordCheck);
       formdata.append("file", image.image);
       dispatch(__signup(formdata));
       alert("그렇지그렇지그렇지");
