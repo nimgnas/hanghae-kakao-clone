@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ProfileBottom from "../components/Profile/ProfileBottom";
 
 import ProfileHeader from "../components/Profile/ProfileHeader";
-import ProfileMiddle from "../components/Profile/ProfileMiddle";
+import ProfileForm from "../components/Profile/ProfileForm";
 
 function Profile() {
   const [profileEdit, setProfileEdit] = useState(true);
@@ -15,7 +15,7 @@ function Profile() {
             profileEdit={profileEdit}
             setProfileEdit={setProfileEdit}
           />
-          <ProfileMiddle
+          <ProfileForm
             setProfileEdit={setProfileEdit}
             profileEdit={profileEdit}
           />

@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import LoginTop from "../components/Login/LoginTop";
-import RegisterMiddle from "../components/Register/RegisterMiddle";
+import RegisterForm from "../components/Register/RegisterForm";
 
 function Register() {
   return (
     <StWrap>
       <StContainer>
         <LoginTop />
-        <RegisterMiddle />
+        <RegisterForm />
       </StContainer>
     </StWrap>
   );

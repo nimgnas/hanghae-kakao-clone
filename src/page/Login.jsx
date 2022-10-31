@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import LoginBottom from "../components/Login/LoginBottom";
-import LoginMiddle from "../components/Login/LoginMiddle";
+import LoginForm from "../components/Login/LoginForm";
 import LoginTop from "../components/Login/LoginTop";
 
 function Login() {
@@ -8,7 +8,7 @@ function Login() {
     <StWrap>
       <StContainer>
         <LoginTop />
-        <LoginMiddle />
+        <LoginForm />
         <LoginBottom />
       </StContainer>
     </StWrap>

@@ -2,15 +2,52 @@ import { useState } from "react";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import styled from "styled-components";
-function LoginMiddle() {
+import { useNavigate } from "react-router-dom";
+function LoginForm() {
   const [loginToggle, setLoginToggle] = useState(true);
+  const navigate = useNavigate();
+  //초기값
+  const initialState = {
+    email: "",
+    password: "",
+  };
+  const [user, setUser] = useState(initialState);
+
+  //로그인에 필요한 인풋값 유저스테이트에 저장
+  const onChangeLoginHandler = (e) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+    console.log(user);
+  };
+
+  //로그인요청 (dispatch 만들 때 아이디 비밀번호오류나면 로그인 안되게 만들어야함)
+  const onClickHandler = () => {
+    if (user.email.trim() === "" || user.password.trim() === "") {
+      alert("입력하세요!");
+    }
+  };
+
   return (
     <StMidContain>
       <RiKakaoTalkFill size={110} color={"var(--color-kakaologo)"} />
-      <input className="id" placeholder="아이디" />
-      <input className="pw" placeholder="비밀번호" />
+      <input
+        className="id"
+        type="email"
+        name="email"
+        placeholder="아이디"
+        required
+        onChange={onChangeLoginHandler}
+      />
+      <input
+        className="pw"
+        type="password"
+        name="password"
+        placeholder="비밀번호"
+        required
+        onChange={onChangeLoginHandler}
+      />
       <div
-        onClick={() => setLoginToggle(!loginToggle)}
+        onClick={onClickHandler}
         className={loginToggle ? "login-btn-isnot" : "login-btn-isok"}
       >
         로그인
@@ -20,7 +57,9 @@ function LoginMiddle() {
         <p>또는</p>
         <div className="line" />
       </div>
-      <div className="register">회원가입</div>
+      <div className="register" onClick={() => navigate("/register")}>
+        회원가입
+      </div>
 
       <div className="autologin">
         <input type="checkbox" />
@@ -30,7 +69,7 @@ function LoginMiddle() {
     </StMidContain>
   );
 }
-export default LoginMiddle;
+export default LoginForm;
 
 const StMidContain = styled.div`
   display: flex;

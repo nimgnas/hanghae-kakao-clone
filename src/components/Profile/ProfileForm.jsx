@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import defaultPic from "../../img/kakaodefault.jpg";
 import { BsCameraFill } from "react-icons/bs";
-function ProfileMiddle({ profileEdit, setProfileEdit }) {
+function ProfileForm({ profileEdit, setProfileEdit }) {
   return (
     <StMid>
       {profileEdit ? null : (
@@ -23,7 +23,7 @@ function ProfileMiddle({ profileEdit, setProfileEdit }) {
   );
 }
 
-export default ProfileMiddle;
+export default ProfileForm;
 const StMid = styled.div`
   height: 200px;
   width: 100%;
