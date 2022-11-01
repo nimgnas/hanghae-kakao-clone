@@ -41,9 +41,7 @@ export const __signin = createAsyncThunk(
       const {
         data: { data, success, error },
       } = await api.post("signin", payload);
-
       if (success) {
-        console.log("리스폰스", data.headers);
         return thunkAPI.fulfillWithValue(data);
       } else throw new Error(error.message);
     } catch (e) {

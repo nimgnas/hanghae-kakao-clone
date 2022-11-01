@@ -28,7 +28,6 @@ export const __getFriendList = createAsyncThunk(
       const {
         data: { data, success, error },
       } = await api.get("friends");
-
       if (success) {
         return thunkAPI.fulfillWithValue(data);
       } else throw new Error(error.message);
@@ -44,11 +43,11 @@ export const __getFriendList = createAsyncThunk(
 export const __getFriendProfileById = createAsyncThunk(
   "friend/getFriendProfile",
   async (payload, thunkAPI) => {
+    console.log(payload);
     try {
       const {
         data: { data, success, error },
-      } = await api.get(`friends/${payload}`);
-
+      } = await api.get(`friends/1`);
       if (success) {
         return thunkAPI.fulfillWithValue(data);
       } else throw new Error(error.message);
@@ -87,12 +86,12 @@ export const friendSlice = createSlice({
     [__addFriend.rejected]: rejectedReducer,
 
     // 친구목록 조회
-    [__addFriend.pending]: pendingReducer,
-    [__addFriend.fulfilled]: (state, action) => {
-      state.friendList = action.payload.friendList;
+    [__getFriendList.pending]: pendingReducer,
+    [__getFriendList.fulfilled]: (state, action) => {
+      state.friendList = action.payload;
       state.isLoading = false;
     },
-    [__addFriend.rejected]: rejectedReducer,
+    [__getFriendList.rejected]: rejectedReducer,
 
     // 친구 프로필 조회
     [__getFriendProfileById.pending]: pendingReducer,

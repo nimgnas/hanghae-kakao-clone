@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useRef, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { RiChatNewLine } from "react-icons/ri";
@@ -8,7 +7,6 @@ import FriendComponent from "../components/FriendComponent/FriendComponent";
 import Body from "../components/Layout/Body";
 import Header from "../components/Layout/Header";
 import Layout from "../components/Layout/Layout";
-import { __getRooms } from "../Redux/module/chat";
 
 function ChattingTab() {
   const [showInput, setShowInput] = useState(false);
@@ -20,9 +18,9 @@ function ChattingTab() {
     (state) => state.chatReducer
   );
 
-  useEffect(() => {
-    dispatch(__getRooms());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(__getRooms());
+  // }, [dispatch]);
 
   const onShowInput = () => {
     setShowInput(!showInput);

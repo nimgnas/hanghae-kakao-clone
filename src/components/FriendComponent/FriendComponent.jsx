@@ -1,9 +1,11 @@
 import styled, { css } from "styled-components";
 
-function FriendComponent({ children, isHover, title, overView }) {
+// TODO: 패딩값 조절,, hover시 꽉 채우도록
+
+function FriendComponent({ children, isHover, title, overView, imgSrc }) {
   return (
     <FriendBox isHover={isHover}>
-      <ImgWrapper src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc0nsol%2FbtqXrCOZ6J9%2FXLlGPEHQoIiwwIClQTkVPk%2Fimg.png"></ImgWrapper>
+      <ImgWrapper src={imgSrc}></ImgWrapper>
       <Body>
         <Title>{title}</Title>
         <OverView>{overView}</OverView>
@@ -31,7 +33,6 @@ const FriendBox = styled.div`
 `;
 const ImgWrapper = styled.img`
   height: 100%;
-  background-color: black;
   border-radius: 17px;
   width: 45px;
 `;

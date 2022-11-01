@@ -1,12 +1,41 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { __addFriend, __getFriendProfileById } from "../../Redux/module/friend";
 
 function AddFriendForm() {
+  const [kakaoId, setKakaoId] = useState("");
+
+  const dispatch = useDispatch();
+  const { friendList, errorMsg } = useSelector((state) => state.friendReducer);
+
+  // TODO: 친구추가 다음 친구목록 조회 안됨..
+
+  const onChange = (e) => {
+    const value = e.target.value;
+    setKakaoId(value);
+  };
+
+  const onSearchEnter = (e) => {
+    if (e.key === "Enter") {
+      if (!kakaoId.trim()) {
+        alert("입력해주세요~!");
+      }
+      dispatch(__addFriend({ username: kakaoId }));
+      alert(errorMsg);
+    }
+  };
   return (
     <StContainer>
       <div className="id">
-        <form>
-          <input placeholder="친구 카카오톡 ID" />
-        </form>
+        <input
+          placeholder="친구 카카오톡 ID"
+          maxLength="20"
+          onChange={onChange}
+          value={kakaoId}
+          onKeyPress={onSearchEnter}
+        />
+
         <span>0/20</span>
       </div>
       <div className="info">
