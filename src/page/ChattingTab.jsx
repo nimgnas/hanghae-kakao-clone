@@ -104,7 +104,7 @@ const Input = styled.input`
 
 const ModalLayout = styled.div`
   width: 250px;
-  height: 200px;
+  height: 100px;
   position: absolute;
   right: 0px;
   top: 50px;
