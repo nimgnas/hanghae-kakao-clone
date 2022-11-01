@@ -7,7 +7,7 @@ import ProfileForm from "../components/Profile/ProfileForm";
 import { useDispatch } from "react-redux";
 import { __getFriendProfileById } from "../Redux/module/friend";
 
-function Profile({ userInfo, profileData }) {
+function Profile({ userInfo, profileData, setOpenMyprofile, openMyprofile }) {
   const [profileEdit, setProfileEdit] = useState(true);
   const [toggle, setToggle] = useState(true);
 
@@ -26,11 +26,13 @@ function Profile({ userInfo, profileData }) {
     <>
       <StContainer>
         <StProfileTop>
-          <ProfileHeader
+          {/* <ProfileHeader
             profileEdit={profileEdit}
             setProfileEdit={setProfileEdit}
-          />
+          /> */}
           <ProfileForm
+            openMyprofile={openMyprofile}
+            setOpenMyprofile={setOpenMyprofile}
             setProfileEdit={setProfileEdit}
             profileEdit={profileEdit}
             profileData={profileData}

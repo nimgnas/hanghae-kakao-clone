@@ -41,7 +41,11 @@ function Home() {
       <Body>
         {openMyprofile && (
           <Modal closeModal={() => setOpenMyprofile(!openMyprofile)}>
-            <Profile userInfo={userInfo} />
+            <Profile
+              userInfo={userInfo}
+              openMyprofile={openMyprofile}
+              setOpenMyprofile={setOpenMyprofile}
+            />
           </Modal>
         )}
         <div onClick={() => setOpenMyprofile(!openMyprofile)}>
