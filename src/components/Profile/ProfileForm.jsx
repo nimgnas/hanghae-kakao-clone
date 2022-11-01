@@ -56,7 +56,7 @@ function ProfileForm({
     setSelectData({ ...selectData, [name]: value });
     console.log("온체인지", selectData);
   };
-  console.log("셀렉트데이터", selectData);
+  console.log("셀렉트데이터", selectData, image.image);
 
   //image 온체인지
   const onChangeImage = (e) => {
@@ -69,10 +69,9 @@ function ProfileForm({
   const onClickEditHandler = () => {
     const formdata = new FormData();
     formdata.append("file", image.image);
-    formdata.append("profileUpdateRequest", {
-      ninkname: selectData.nickname,
-      status: selectData.status,
-    });
+    formdata.append("nickname", selectData.nickname);
+    formdata.append("status", selectData.status);
+    console.log("프로필수정파일전송", selectData);
 
     dispatch(__putMyProfile(formdata));
     setProfileEdit(!profileEdit);

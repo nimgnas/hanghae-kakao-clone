@@ -51,6 +51,7 @@ function Home() {
         <div onClick={() => setOpenMyprofile(!openMyprofile)}>
           <FriendComponent userInfo={userInfo} />
         </div>
+        <hr />
         <FriendIndex />
       </Body>
     </Layout>
