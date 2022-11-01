@@ -88,9 +88,9 @@ export const friendSlice = createSlice({
     [__addFriend.rejected]: rejectedReducer,
 
     // 친구목록 조회
-    [__addFriend.pending]: pendingReducer,
-    [__addFriend.fulfilled]: (state, action) => {
-      state.friendList = action.payload.friendList;
+    [__getFriendList.pending]: pendingReducer,
+    [__getFriendList.fulfilled]: (state, action) => {
+      state.friendList = action.payload;
       state.isLoading = false;
     },
     [__addFriend.rejected]: rejectedReducer,

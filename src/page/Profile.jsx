@@ -1,12 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ProfileBottom from "../components/Profile/ProfileBottom";
 
 import ProfileHeader from "../components/Profile/ProfileHeader";
 import ProfileForm from "../components/Profile/ProfileForm";
+import { useDispatch } from "react-redux";
+import { __getFriendProfileById } from "../Redux/module/friend";
 
-function Profile() {
+function Profile({ userInfo, profileData }) {
   const [profileEdit, setProfileEdit] = useState(true);
+  const [toggle, setToggle] = useState(true);
+
+  useEffect(() => {
+    const botToggle = () => {
+      if (userInfo) {
+        setToggle(true);
+      } else {
+        setToggle(false);
+      }
+    };
+    botToggle();
+  }, [userInfo]);
+
   return (
     <>
       <StContainer>
@@ -18,12 +33,15 @@ function Profile() {
           <ProfileForm
             setProfileEdit={setProfileEdit}
             profileEdit={profileEdit}
+            profileData={profileData}
+            userInfo={userInfo}
           />
         </StProfileTop>
         <StProfileBottom>
           <ProfileBottom
             setProfileEdit={setProfileEdit}
             profileEdit={profileEdit}
+            toggle={toggle}
           />
         </StProfileBottom>
       </StContainer>

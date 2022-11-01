@@ -10,8 +10,8 @@ const api = axios.create({
 // 가져온 토큰을 요청 headers에 담는다.
 api.interceptors.request.use(
   function (config) {
-    if (config.url !== "/login" || config.url !== "/signup") {
-      config.headers.Access_Token = localStorage.getItem("Access_Token");
+    if (config.url !== "login" || config.url !== "signup") {
+      config.headers.Authorization = localStorage.getItem("access_token");
     }
     return config;
   },

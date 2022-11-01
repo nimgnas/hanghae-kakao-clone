@@ -1,12 +1,18 @@
+import { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled, { css } from "styled-components";
+import Profile from "../../page/Profile";
+import { __getFriendProfileById } from "../../Redux/module/friend";
+import Modal from "../Modal/Modal";
 
-function FriendComponent({ children, isHover }) {
+function FriendComponent({ children, isHover, userInfo }) {
   return (
     <FriendBox isHover={isHover}>
-      <ImgWrapper src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc0nsol%2FbtqXrCOZ6J9%2FXLlGPEHQoIiwwIClQTkVPk%2Fimg.png"></ImgWrapper>
+      <ImgWrapper src={userInfo?.image}></ImgWrapper>
       <Body>
-        <Title>상민</Title>
-        <OverView>채팅입니다.</OverView>
+        <Title>{userInfo?.nickname}</Title>
+        <OverView>{userInfo?.status}</OverView>
       </Body>
       {children}
     </FriendBox>

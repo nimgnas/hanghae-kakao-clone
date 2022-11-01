@@ -29,16 +29,6 @@ function ProfileHeader({ setProfileEdit, profileEdit }) {
           <div className="ok">완료</div>
         </>
       )}
-      {/* <div className="fav" onClick={onClickFav}>
-        {isFavToggle ? (
-          <IoHeartCircleOutline color="white" size={25} />
-        ) : (
-          <IoHeartCircleOutline color="yellow" size={25} />
-        )}
-      </div>
-      <div className="close">
-        <AiOutlineClose color="white" />
-      </div> */}
     </StContainer>
   );
 }
