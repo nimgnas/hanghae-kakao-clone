@@ -92,7 +92,8 @@ function RegisterForm() {
       regPassword.test(password) &&
       regNickname.test(nickname) &&
       password === passwordCheck &&
-      status
+      status &&
+      image.image
     ) {
       return setRegisterOk(true);
     } else {
@@ -130,8 +131,14 @@ function RegisterForm() {
       formdata.append("password", user.password);
       formdata.append("passwordCheck", user.passwordCheck);
       formdata.append("file", image.image);
-      dispatch(__signup(formdata));
-      alert("그렇지그렇지그렇지");
+      dispatch(__signup(formdata)).then((res) => {
+        if (image.image === "") {
+          alert("이미지를 첨부해주세요!!!");
+        }
+        if (!res?.error) {
+          navigate("/login");
+        }
+      });
     }
   };
 

@@ -22,7 +22,6 @@ function AddFriendForm() {
         alert("입력해주세요~!");
       }
       dispatch(__addFriend({ username: kakaoId }));
-      alert(errorMsg);
     }
   };
   return (
