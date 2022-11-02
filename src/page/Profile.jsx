@@ -2,12 +2,9 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ProfileBottom from "../components/Profile/ProfileBottom";
 
-import ProfileHeader from "../components/Profile/ProfileHeader";
 import ProfileForm from "../components/Profile/ProfileForm";
-import { useDispatch } from "react-redux";
-import { __getFriendProfileById } from "../Redux/module/friend";
 
-function Profile({ userInfo, profileData }) {
+function Profile({ userInfo, profileData, setOpenMyprofile, openMyprofile }) {
   const [profileEdit, setProfileEdit] = useState(true);
   const [toggle, setToggle] = useState(true);
 
@@ -26,11 +23,13 @@ function Profile({ userInfo, profileData }) {
     <>
       <StContainer>
         <StProfileTop>
-          <ProfileHeader
+          {/* <ProfileHeader
             profileEdit={profileEdit}
             setProfileEdit={setProfileEdit}
-          />
+          /> */}
           <ProfileForm
+            openMyprofile={openMyprofile}
+            setOpenMyprofile={setOpenMyprofile}
             setProfileEdit={setProfileEdit}
             profileEdit={profileEdit}
             profileData={profileData}
@@ -60,7 +59,6 @@ const StProfileTop = styled.div`
   height: 495px;
   width: 300px;
   display: flex;
-
   flex-wrap: wrap;
   align-content: space-between;
 `;

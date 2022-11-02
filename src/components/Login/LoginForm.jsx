@@ -39,7 +39,9 @@ function LoginForm() {
     if (user.password.trim() === "") {
       alert("비밀번호를 입력하세요!");
     } else {
-      dispatch(__signin(user));
+      dispatch(__signin(user)).then(() => {
+        navigate("/");
+      });
     }
   };
 

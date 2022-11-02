@@ -2,6 +2,7 @@ import { BsFillChatFill, BsThreeDots, BsBell } from "react-icons/bs";
 import { IoSettingsOutline } from "react-icons/io5";
 import { HiUser } from "react-icons/hi";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 //TODO: 아이콘 클릭 /클릭X 일때 color값 바꿔줄 것
 
@@ -10,8 +11,12 @@ function Layout({ children }) {
     <LayoutContainer>
       <Nav>
         <IconWrapper>
-          <HiUser size={30} color="gray" />
-          <BsFillChatFill size={20} color="gray" />
+          <Link to="/">
+            <HiUser size={30} color="gray" />
+          </Link>
+          <Link to="/chathome">
+            <BsFillChatFill size={20} color="gray" />
+          </Link>
           <BsThreeDots size={25} color="gray" />
         </IconWrapper>
         <IconWrapper>
@@ -33,6 +38,7 @@ const LayoutContainer = styled.div`
   border-radius: 10px;
   border: 1px solid gray;
   overflow: hidden;
+  position: relative;
 `;
 
 const Nav = styled.div`

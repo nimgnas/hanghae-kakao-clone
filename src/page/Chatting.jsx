@@ -1,6 +1,8 @@
 import styled from "styled-components";
-import FriendCompoent from "../components/FriendComponent/FriendComponent";
+import FriendComponent from "../components/FriendComponent/FriendComponent";
 import { AiOutlineSearch } from "react-icons/ai";
+import { BsTelephone, BsCameraVideo } from "react-icons/bs";
+import { IoReorderThreeOutline } from "react-icons/io5";
 
 function Chatting() {
   const onEnter = () => {};
@@ -8,14 +10,14 @@ function Chatting() {
   return (
     <Layout>
       <Header>
-        <FriendCompoent>
+        <FriendComponent title="상민">
           <IconWrapper>
             <AiOutlineSearch />
-            <AiOutlineSearch />
-            <AiOutlineSearch />
-            <AiOutlineSearch />
+            <BsTelephone size={17} />
+            <BsCameraVideo />
+            <IoReorderThreeOutline />
           </IconWrapper>
-        </FriendCompoent>
+        </FriendComponent>
       </Header>
       <Body>
         {new Array(20).fill(1).map(() => (

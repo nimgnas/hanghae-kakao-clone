@@ -23,7 +23,6 @@ api.interceptors.request.use(
 // api요청 주소가 login일 경우 access token과 refresh token을 받아 로컬스토리지에 저장해준다.
 api.interceptors.response.use(
   function (response) {
-    console.log(response);
     if (response.config.url === "signin" && response.data.success) {
       localStorage.setItem("access_token", response.headers.access_token);
       localStorage.setItem("refresh_token", response.headers.refresh_token);

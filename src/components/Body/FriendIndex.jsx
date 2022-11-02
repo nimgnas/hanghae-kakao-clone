@@ -9,7 +9,7 @@ function FriendIndex() {
   const dispatch = useDispatch();
   const [openProfile, setOpenProfile] = useState(false);
 
-  //map으로 만든 각 친구들 클릭시 username이 friend state에 저장됨
+  //map으로 만든 각 친구들 클릭시 username이 friend state에 저장됨, 모달창에 친구 정보 조회할때 사용
   const [friend, setFriend] = useState("");
   useEffect(() => {
     dispatch(__getFriendList());
@@ -17,18 +17,21 @@ function FriendIndex() {
   const friendList = useSelector(
     ({ friendReducer }) => friendReducer.friendList
   );
-  console.log("친구목록", friendList);
+
   const onClickHandler = (username) => {
     setOpenProfile(!openProfile);
     setFriend(username);
   };
+
   return (
     <>
       {friendList &&
         friendList.map((userInfo) => {
-          console.log("맵함수", userInfo);
           return (
-            <div onClick={() => onClickHandler(userInfo.id)}>
+            <div
+              onClick={() => onClickHandler(userInfo.id)}
+              key={userInfo.username}
+            >
               <FriendComponent
                 userInfo={userInfo}
                 openProfile={openProfile}

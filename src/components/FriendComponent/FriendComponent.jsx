@@ -37,7 +37,6 @@ const FriendBox = styled.div`
 `;
 const ImgWrapper = styled.img`
   height: 100%;
-  background-color: black;
   border-radius: 17px;
   width: 45px;
 `;

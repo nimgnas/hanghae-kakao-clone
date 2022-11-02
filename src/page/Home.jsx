@@ -21,7 +21,7 @@ function Home() {
     dispatch(__getMyProfile());
   }, [dispatch]);
   const userInfo = useSelector(({ userReducer }) => userReducer.userInfo);
-  console.log("스테이트", userInfo);
+
   const [openMyprofile, setOpenMyprofile] = useState(false);
 
   return (
@@ -41,12 +41,17 @@ function Home() {
       <Body>
         {openMyprofile && (
           <Modal closeModal={() => setOpenMyprofile(!openMyprofile)}>
-            <Profile userInfo={userInfo} />
+            <Profile
+              userInfo={userInfo}
+              openMyprofile={openMyprofile}
+              setOpenMyprofile={setOpenMyprofile}
+            />
           </Modal>
         )}
         <div onClick={() => setOpenMyprofile(!openMyprofile)}>
           <FriendComponent userInfo={userInfo} />
         </div>
+        <hr />
         <FriendIndex />
       </Body>
     </Layout>

@@ -41,9 +41,7 @@ export const __signin = createAsyncThunk(
       const {
         data: { data, success, error },
       } = await api.post("signin", payload);
-
       if (success) {
-        console.log("리스폰스", data.headers);
         return thunkAPI.fulfillWithValue(data);
       } else throw new Error(error.message);
     } catch (e) {
@@ -82,7 +80,7 @@ export const __putMyProfile = createAsyncThunk(
     try {
       const {
         data: { data, success, error },
-      } = await api.put("myprofile");
+      } = await api.put("myprofile", payload);
 
       if (success) {
         return thunkAPI.fulfillWithValue(data);
@@ -139,8 +137,9 @@ export const userSlice = createSlice({
 
     // 프로필 수정
     [__putMyProfile.pending]: pendingReducer,
-    [__putMyProfile.fulfilled]: (state) => {
+    [__putMyProfile.fulfilled]: (state, action) => {
       state.isLoading = false;
+      state.userInfo = action.payload;
     },
     [__putMyProfile.rejected]: rejectedReducer,
   },
