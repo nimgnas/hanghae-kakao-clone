@@ -1,70 +1,13 @@
-# Getting Started with Create React App
+FrontEnd Trouble shooting
+FE 김휘린
+문제1. props drilling이 여러군데 발생하여 가독성이 떨어져 코딩시간이 오래걸림 
+해결1. contextAPI를 사용하려했으나 익숙치 않아서 일단 과도하게 세분화 된 부분을 다시 하나의 컴포넌트로 합쳤음
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+문제2. 내 프로필 수정기능 500번 ERROR
+해결2. git에 올린 자료를 merge할 때, 주의하지 못하여 잘못된 경로가 입력되어있었음. 경로를 수정하고 바로 해결됨
 
-## Available Scripts
+문제3. 회원가입시 유효성조건이 만족되어야만 버튼이 활성화 되도록 하였는데 만족 된 후 하나를 바꿔서 만족되지 않은 조건이여도 활성화가 되는 문제
+해결3. 이는 useState의 비동기로 생겨난 문제로 useEffect로 실행하여 dependency를 state로 설정하니 즉각 반응하게 되었다.
 
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+문제4. 친구프로필 조회시 모달창으로 띄워서 보이도록 하였는데 해당 친구의 프로필이 아닌 항상 목록의 맨 마지막 친구의 프로필이 보이는 문제
+해결4. map에 모달컴포넌트를 넣어서 각각의 정보를 담아주면 된다고 생각하였는데 그 방법은 가능하지 않았고, onClick함수안에 map의 각argument에 id값을 담아서 state로 지정해주고 해당 state를 모달 컴포넌트에 props전달 해주는 방법으로 바꾸었더니 해결 되었다.
