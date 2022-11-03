@@ -1,4 +1,4 @@
-FrontEnd Trouble shooting\n 
+FrontEnd Trouble shooting    
 FE 김휘린   
 문제1. props drilling이 여러군데 발생하여 가독성이 떨어져 코딩시간이 오래걸림    
 해결1. contextAPI를 사용하려했으나 익숙치 않아서 일단 과도하게 세분화 된 부분을 다시 하나의 컴포넌트로 합쳤음   
