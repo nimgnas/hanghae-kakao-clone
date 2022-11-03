@@ -28,6 +28,7 @@ function Home() {
     <Layout>
       <Header title="친구">
         <AiOutlineSearch />
+
         <div onClick={() => setAddFriend(!addFriend)}>
           <FiUserPlus />
         </div>
